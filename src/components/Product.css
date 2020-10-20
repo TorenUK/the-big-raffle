@@ -1,0 +1,63 @@
+.product {
+  width: 500px;
+  height: 650px;
+  margin: 50px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: white;
+  box-shadow: 1px 1px 15px 1px black;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.product__image {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0.7;
+
+  background-color: white;
+  overflow: hidden;
+}
+
+.product__image > img {
+  object-fit: contain;
+  width: 80%;
+}
+
+.product__info {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 0.3;
+
+  border-top: 2px solid black;
+}
+
+.product__info > h2 {
+  margin: 10px;
+}
+
+.product__info > :nth-child(2) {
+  padding: 0 10px;
+
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px 1px black;
+}
+
+.product__info > .MuiButton-root {
+  height: 30px;
+  margin-top: 5px;
+
+  font-family: poppins, sans-serif;
+  background-color: orange;
+}
