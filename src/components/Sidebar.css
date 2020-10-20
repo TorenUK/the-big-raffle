@@ -65,6 +65,7 @@
 }
 
 .sidebar__link {
+  width: 100%;
   margin: 20px 0;
 
   display: flex;
@@ -74,6 +75,13 @@
   color: white;
 
   transition: all 0.2s ease-in-out;
+}
+
+.sidebar__link > p {
+  font-size: 25px;
+  font-weight: 400;
+  color: white;
+  z-index: 100;
 }
 
 .sidebar__link > .MuiSvgIcon-root {
@@ -90,10 +98,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
   text-align: center;
   flex: 0.25;
 
   color: white;
   background-color: rgb(109, 106, 106);
+}
+
+.sidebar__icons {
+  width: 100%;
+  margin-top: 10px;
+
+  display: flex;
+  justify-content: space-evenly;
 }
