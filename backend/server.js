@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 // schema
 const products = require("./models/dbProducts");
@@ -43,6 +44,20 @@ app.get("/products", (req, res) => {
     } else {
       res.status(200).send(data);
     }
+  });
+});
+
+app.post("/create-payment-intent", async (req, res) => {
+  // Create a PaymentIntent with the order amount and currency
+
+  const { total } = req.body;
+  console.log("hey this is the total ---->", total);
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: total,
+    currency: "gbp",
+  });
+  res.status(201).send({
+    clientSecret: paymentIntent.client_secret,
   });
 });
 

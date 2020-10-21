@@ -1,18 +1,33 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 // components
 import "./Basket.css";
 import Sidebar from "./Sidebar";
 import BasketProduct from "./BasketProduct";
-import subtotal from "./Subtotal";
+import Subtotal from "./Subtotal";
+
+// other
+import { Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import gsap from "gsap";
 
 // redux
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectBasket } from "../features/basketSlice";
-import Subtotal from "./Subtotal";
 
 const Basket = () => {
   const basket = useSelector(selectBasket);
+
+  const container = useRef(null);
+
+  //animation
+  useEffect(() => {
+    gsap.to(container.current, {
+      opacity: 1,
+      duration: 0.7,
+      ease: "ease-in-out",
+    });
+  });
 
   return (
     <>
@@ -21,23 +36,36 @@ const Basket = () => {
         <div className="basket__banner">
           <p>winners selected weekly -- free uk delivery</p>
         </div>
-        <div className="basket__header">
-          <h1>your cart</h1>
-          <p>{basket?.length} item(s)</p>
-        </div>
-        <div className="basket__container">
-          {basket?.map((product) => (
-            <BasketProduct
-              name={product.name}
-              image={product.image}
-              price={product.price}
-              id={product.id}
-            />
-          ))}
-        </div>
-        <div className="basket__subtotal">
-          <Subtotal />
-        </div>
+        {basket?.length ? (
+          <>
+            <div className="basket__header">
+              <h1>your cart</h1>
+              <p>{basket?.length} ticket(s)</p>
+            </div>
+            <div ref={container} className="basket__container">
+              {basket?.map((product) => (
+                <BasketProduct
+                  name={product.name}
+                  image={product.image}
+                  price={product.price}
+                  id={product.id}
+                />
+              ))}
+            </div>
+            <div className="basket__subtotal">
+              <Subtotal />
+            </div>
+          </>
+        ) : (
+          <div className="basket__empty">
+            <h1>your cart is empty</h1>
+            <Link to="/">
+              {" "}
+              <Button variant="contained">continue shopping</Button>
+            </Link>
+          </div>
+        )}
+
         <div className="basket__footer">
           <p>2020 The Big Raffle All Rights Reserved </p>
         </div>

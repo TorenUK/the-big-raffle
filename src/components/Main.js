@@ -13,7 +13,7 @@ import axios from "./axios";
 const Main = () => {
   const [products, setProducts] = useState([]);
 
-  const notify = (name) => toast.dark(`${name} ticket added to cart`);
+  const notify = (name) => toast.dark(` 1 ${name} ticket added to cart`);
 
   const container = useRef(null);
 
@@ -32,7 +32,7 @@ const Main = () => {
   useEffect(() => {
     gsap.to(container.current, {
       opacity: 1,
-      duration: 1,
+      duration: 0.7,
       ease: "ease-in-out",
     });
   });
@@ -44,13 +44,13 @@ const Main = () => {
       </div>
       <div className="main__header">
         <div className="main__p">
-          <p>hello this is just some example text</p>
+          <p>Win luxury items & cash prizes</p>
         </div>
         <div className="main__p">
-          <p>hello this is just some example text</p>
+          <p>All items 100% authentic</p>
         </div>
         <div className="main__p">
-          <p>hello this is just some example text</p>
+          <p>Dispatch: 1-2 working days</p>
         </div>
       </div>
       <div ref={container} className="main__container">
@@ -61,7 +61,7 @@ const Main = () => {
             name={product.name}
             image={product.image}
             price={product.price}
-            id={product.id}
+            tickets={product.tickets}
           />
         ))}
         <ToastContainer

@@ -8,7 +8,7 @@ import { Button } from "@material-ui/core";
 import DeleteForeverOutlinedIcon from "@material-ui/icons/DeleteForeverOutlined";
 
 // redux
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { removeFromBasket } from "../features/basketSlice";
 
 const BasketProduct = ({ name, image, price, id }) => {
@@ -21,14 +21,10 @@ const BasketProduct = ({ name, image, price, id }) => {
       </div>
       <div className="basketProduct__info">
         <h4>{name}</h4>
-        <p>£{price}</p>
+
+        <h3>£{price}</h3>
       </div>
       <div className="basket__interact">
-        {" "}
-        <form>
-          <label for="quantity">quantity</label>
-          <input placeholder="1" type="number" name="quantity" min="1" max="" />
-        </form>
         <Button
           onClick={() => {
             dispatch(

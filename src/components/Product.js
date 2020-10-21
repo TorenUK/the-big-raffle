@@ -5,12 +5,13 @@ import "./Product.css";
 
 // other
 import { Button } from "@material-ui/core";
+import { v4 as uuidv4 } from "uuid";
 
 //redux
 import { useDispatch } from "react-redux";
-import { addToBasket, removeFromBasket } from "../features/basketSlice";
+import { addToBasket } from "../features/basketSlice";
 
-const Product = ({ name, image, price, id, notify }) => {
+const Product = ({ name, image, price, tickets, notify }) => {
   const dispatch = useDispatch();
 
   return (
@@ -20,6 +21,7 @@ const Product = ({ name, image, price, id, notify }) => {
       </div>
       <div className="product__info">
         <h2>{name}</h2>
+        <p>{tickets} tickets available</p>
         <h2>£{price}</h2>
         <Button
           onClick={() => {
@@ -29,7 +31,7 @@ const Product = ({ name, image, price, id, notify }) => {
                 name: name,
                 image: image,
                 price: price,
-                id: id,
+                id: uuidv4(),
               })
             );
           }}
