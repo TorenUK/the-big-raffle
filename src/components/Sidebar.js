@@ -49,12 +49,12 @@ const Sidebar = () => {
           <ShoppingCartOutlinedIcon />
           {basket?.length ? <p>{basket?.length}</p> : null}
         </Link>
-        <Link href="#" className="sidebar__link">
+        <Link to="#" className="sidebar__link">
           <EmailOutlinedIcon />
         </Link>
       </div>
       <div className="sidebar__bottom">
-        <h3>Follow us:</h3>
+        <h4>Follow us:</h4>
         <div className="sidebar__icons">
           <InstagramIcon />
           <TwitterIcon />

@@ -10,7 +10,7 @@ import { Button } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { addToBasket, removeFromBasket } from "../features/basketSlice";
 
-const Product = ({ name, image, price, notify }) => {
+const Product = ({ name, image, price, id, notify }) => {
   const dispatch = useDispatch();
 
   return (
@@ -29,7 +29,7 @@ const Product = ({ name, image, price, notify }) => {
                 name: name,
                 image: image,
                 price: price,
-                id: 123,
+                id: id,
               })
             );
           }}
@@ -37,10 +37,6 @@ const Product = ({ name, image, price, notify }) => {
         >
           add to cart
         </Button>
-        <form>
-          <label for="quantity">Qty</label>
-          <input type="number" id="quantity" name="quantity" min="1" max="10" />
-        </form>
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ import axios from "./axios";
 const Main = () => {
   const [products, setProducts] = useState([]);
 
-  const notify = (name) => toast.dark(`${name} added to basket`);
+  const notify = (name) => toast.dark(`${name} ticket added to cart`);
 
   const container = useRef(null);
 
@@ -56,15 +56,17 @@ const Main = () => {
       <div ref={container} className="main__container">
         {products.map((product) => (
           <Product
+            key={Math.random()}
             notify={notify}
             name={product.name}
             image={product.image}
             price={product.price}
+            id={product.id}
           />
         ))}
         <ToastContainer
           position="bottom-left"
-          autoClose={2200}
+          autoClose={2700}
           hideProgressBar={false}
           newestOnTop={true}
           closeOnClick

@@ -38,7 +38,7 @@
   position: relative;
   width: 95%;
 
-  flex: 0.75;
+  flex: 0.65;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -46,6 +46,13 @@
   overflow-y: scroll;
 
   border-radius: 5px;
+}
+
+.basket__subtotal {
+  width: 95%;
+  flex: 0.1;
+
+  text-align: center;
 }
 
 .basket__footer {
