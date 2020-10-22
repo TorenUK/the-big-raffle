@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 // components
 import "./Sidebar.css";
@@ -14,7 +14,7 @@ import FacebookIcon from "@material-ui/icons/Facebook";
 import { Link } from "react-router-dom";
 
 // redux
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectBasket } from "../features/basketSlice";
 
 const Sidebar = () => {

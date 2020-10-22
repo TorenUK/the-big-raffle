@@ -7,6 +7,7 @@ import Sidebar from "./components/Sidebar";
 import Main from "./components/Main";
 import Basket from "./components/Basket";
 import Checkout from "./components/Checkout";
+import Order from "./components/Order";
 
 // other
 import { loadStripe } from "@stripe/stripe-js";
@@ -22,6 +23,9 @@ function App() {
     <Router>
       <div className="app">
         <Switch>
+          <Route path="/order">
+            <Order />
+          </Route>
           <Route path="/checkout">
             <Elements stripe={promise}>
               {" "}

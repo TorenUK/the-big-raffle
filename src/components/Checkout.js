@@ -40,6 +40,7 @@ const Checkout = () => {
   const [email, setEmail] = useState("");
   const stripe = useStripe();
   const elements = useElements();
+  const history = useHistory();
 
   const getBasketTotal = (basket) =>
     basket?.reduce((amount, product) => parseInt(product.price) + amount, 0);
@@ -98,6 +99,8 @@ const Checkout = () => {
       setError(null);
       setProcessing(false);
       setSucceeded(true);
+      history.push("/order");
+      // empty the basket
     }
   };
 
@@ -119,6 +122,7 @@ const Checkout = () => {
               image={product.image}
               price={product.price}
               id={product.id}
+              removeButton={false}
             />
           ))}
         </div>

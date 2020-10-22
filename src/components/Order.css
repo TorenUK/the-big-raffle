@@ -1,0 +1,65 @@
+.order ::-webkit-scrollbar {
+  display: none;
+}
+
+.order {
+  position: relative;
+  height: 100%;
+
+  flex: 0.85;
+  display: flex;
+  flex-direction: column;
+
+  background-color: rgb(109, 106, 106);
+}
+
+.order__banner {
+  width: 95%;
+
+  flex: 0.02;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  color: teal;
+  background-color: black;
+}
+
+.order__header {
+  width: 95%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 0.21;
+
+  text-align: center;
+  color: white;
+}
+
+.order__container {
+  position: relative;
+  width: 95%;
+
+  flex: 0.75;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  overflow-y: scroll;
+
+  border-radius: 5px;
+  background-color: white;
+}
+
+.order__footer {
+  width: 95%;
+  flex: 0.02;
+
+  text-align: center;
+
+  background-color: black;
+  color: teal;
+}

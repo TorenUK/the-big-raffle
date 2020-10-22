@@ -11,34 +11,35 @@ import DeleteForeverOutlinedIcon from "@material-ui/icons/DeleteForeverOutlined"
 import { useDispatch } from "react-redux";
 import { removeFromBasket } from "../features/basketSlice";
 
-const BasketProduct = ({ name, image, price, id }) => {
+const BasketProduct = ({ name, image, price, id, removeButton }) => {
   const dispatch = useDispatch();
 
   return (
     <div className="basketProduct">
       <div className="basketProduct__image">
-        <img src={image} />
+        <img alt="product" src={image} />
       </div>
       <div className="basketProduct__info">
         <h4>{name}</h4>
-
         <h3>£{price}</h3>
       </div>
-      <div className="basket__interact">
-        <Button
-          onClick={() => {
-            dispatch(
-              removeFromBasket({
-                id: id,
-              })
-            );
-          }}
-          size="small"
-          variant="contained"
-        >
-          <DeleteForeverOutlinedIcon />
-        </Button>
-      </div>
+      {removeButton ? (
+        <div className="basket__interact">
+          <Button
+            onClick={() => {
+              dispatch(
+                removeFromBasket({
+                  id: id,
+                })
+              );
+            }}
+            size="small"
+            variant="contained"
+          >
+            <DeleteForeverOutlinedIcon />
+          </Button>
+        </div>
+      ) : null}
     </div>
   );
 };

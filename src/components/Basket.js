@@ -49,6 +49,7 @@ const Basket = () => {
                   image={product.image}
                   price={product.price}
                   id={product.id}
+                  removeButton
                 />
               ))}
             </div>
