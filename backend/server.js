@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 // schema
-const products = require("./models/dbProducts");
+const Products = require("./models/dbProducts");
 
 const mongoAdminPassword = process.env.MONGO_ADMIN_PASSWORD;
 const hostname = process.env.HOST;
@@ -38,13 +38,28 @@ app.get("/", (req, res) => {
 });
 
 app.get("/products", (req, res) => {
-  products.find((err, data) => {
+  Products.find((err, data) => {
     if (err) {
       res.status(500).send(err);
     } else {
       res.status(200).send(data);
     }
   });
+});
+
+// update tickets when purchase is made
+
+app.post("/update/:id", (req, res) => {
+  Products.findById(req.params.id)
+    .then((product) => {
+      product.tickets = product.tickets - req.body.tickets;
+
+      product
+        .save()
+        .then(() => res.send("product updated!"))
+        .catch((err) => res.status(400).send("err -> ", err));
+    })
+    .catch((err) => res.status(400).send("error ->", err));
 });
 
 app.post("/create-payment-intent", async (req, res) => {
@@ -56,6 +71,7 @@ app.post("/create-payment-intent", async (req, res) => {
     amount: total,
     currency: "gbp",
   });
+
   res.status(201).send({
     clientSecret: paymentIntent.client_secret,
   });

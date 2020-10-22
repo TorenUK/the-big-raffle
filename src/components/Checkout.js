@@ -12,10 +12,12 @@ import { useHistory } from "react-router-dom";
 import gsap from "gsap";
 
 // redux
-import { useSelector } from "react-redux";
-import { selectBasket } from "../features/basketSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { selectBasket, emptyBasket } from "../features/basketSlice";
 
 const Checkout = () => {
+  const dispatch = useDispatch();
+
   // animation
   const container = useRef(null);
 
@@ -100,7 +102,31 @@ const Checkout = () => {
       setProcessing(false);
       setSucceeded(true);
       history.push("/order");
-      // empty the basket
+
+      // get the number of tickets ordered per product & store in new object
+      let obj = {};
+      let reqId, tickets;
+
+      for (let i = 0; i < basket.length; i++) {
+        if (obj[basket[i].dbId]) {
+          obj[basket[i].dbId]++;
+        } else {
+          obj[basket[i].dbId] = 1;
+        }
+      }
+
+      // update number of tickets available in db // also reflected on the frontend
+
+      for (const id in obj) {
+        reqId = id;
+        tickets = obj[id];
+
+        axios.post(`/update/${reqId}`, {
+          tickets: tickets,
+        });
+      }
+
+      dispatch(emptyBasket());
     }
   };
 

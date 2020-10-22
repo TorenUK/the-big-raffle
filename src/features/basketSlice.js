@@ -13,11 +13,18 @@ export const basketSlice = createSlice({
     removeFromBasket: (state, action) => {
       return state.filter((product) => product.id !== action.payload.id);
     },
+    emptyBasket: (state) => {
+      return (state = []);
+    },
   },
 });
 
 // actions
-export const { addToBasket, removeFromBasket } = basketSlice.actions;
+export const {
+  addToBasket,
+  removeFromBasket,
+  emptyBasket,
+} = basketSlice.actions;
 
 // selector
 export const selectBasket = (state) => state.basket;

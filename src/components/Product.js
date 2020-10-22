@@ -11,7 +11,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
 import { addToBasket } from "../features/basketSlice";
 
-const Product = ({ name, image, price, tickets, notify }) => {
+const Product = ({ name, image, price, tickets, notify, dbId }) => {
   const dispatch = useDispatch();
 
   return (
@@ -32,6 +32,7 @@ const Product = ({ name, image, price, tickets, notify }) => {
                 image: image,
                 price: price,
                 id: uuidv4(),
+                dbId: dbId,
               })
             );
           }}

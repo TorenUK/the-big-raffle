@@ -62,6 +62,7 @@ const Main = () => {
             image={product.image}
             price={product.price}
             tickets={product.tickets}
+            dbId={product._id}
           />
         ))}
         <ToastContainer
