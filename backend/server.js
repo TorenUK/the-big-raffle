@@ -6,6 +6,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 // schema
 const Products = require("./models/dbProducts");
+const Order = require("./models/dbOrders");
 
 const mongoAdminPassword = process.env.MONGO_ADMIN_PASSWORD;
 const hostname = process.env.HOST;
@@ -47,7 +48,19 @@ app.get("/products", (req, res) => {
   });
 });
 
-// update tickets when purchase is made
+// get individual order to display on order.js page
+
+app.get("/order", (req, res) => {
+  Order.find((err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+// update db tickets when purchase is made
 
 app.post("/update/:id", (req, res) => {
   Products.findById(req.params.id)
@@ -62,11 +75,22 @@ app.post("/update/:id", (req, res) => {
     .catch((err) => res.status(400).send("error ->", err));
 });
 
+app.post("/orders", (req, res) => {
+  const newOrder = new Order({
+    basket: req.body.basket,
+    email: req.body.email,
+  });
+
+  newOrder
+    .save()
+    .then(() => res.send("order added"))
+    .catch((err) => res.status(400).send("error", err));
+});
+
 app.post("/create-payment-intent", async (req, res) => {
   // Create a PaymentIntent with the order amount and currency
 
   const { total } = req.body;
-  console.log("hey this is the total ---->", total);
   const paymentIntent = await stripe.paymentIntents.create({
     amount: total,
     currency: "gbp",

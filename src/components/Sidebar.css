@@ -113,3 +113,12 @@
   display: flex;
   justify-content: space-evenly;
 }
+
+.sidebar__icons > .MuiSvgIcon-root {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.sidebar__icons > .MuiSvgIcon-root:hover {
+  color: teal;
+}

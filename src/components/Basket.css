@@ -13,19 +13,6 @@
   background-color: rgb(109, 106, 106);
 }
 
-.basket__banner {
-  width: 95%;
-
-  flex: 0.02;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-
-  color: teal;
-  background-color: black;
-}
-
 .basket__header {
   width: 95%;
 
@@ -59,16 +46,6 @@
   flex: 0.1;
 
   text-align: center;
-}
-
-.basket__footer {
-  width: 95%;
-  flex: 0.02;
-
-  text-align: center;
-
-  background-color: black;
-  color: teal;
 }
 
 .basket__empty {

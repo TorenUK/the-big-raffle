@@ -4,6 +4,8 @@ import React, { useEffect, useState, useRef } from "react";
 import "./Checkout.css";
 import Sidebar from "./Sidebar";
 import BasketProduct from "./BasketProduct";
+import Banner from "./Banner";
+import Footer from "./Footer";
 
 // other
 import axios from "./axios";
@@ -14,6 +16,7 @@ import gsap from "gsap";
 // redux
 import { useSelector, useDispatch } from "react-redux";
 import { selectBasket, emptyBasket } from "../features/basketSlice";
+import { addCustomer } from "../features/customerSlice";
 
 const Checkout = () => {
   const dispatch = useDispatch();
@@ -115,6 +118,8 @@ const Checkout = () => {
         }
       }
 
+      // obj now has product id and amount of tickets as key:value pairs
+
       // update number of tickets available in db // also reflected on the frontend
 
       for (const id in obj) {
@@ -126,6 +131,13 @@ const Checkout = () => {
         });
       }
 
+      // add new order to db
+      axios.post("/orders", {
+        basket: basket,
+        email: email,
+      });
+
+      dispatch(addCustomer(email));
       dispatch(emptyBasket());
     }
   };
@@ -134,9 +146,7 @@ const Checkout = () => {
     <>
       <Sidebar />
       <div className="checkout">
-        <div className="checkout__banner">
-          <p>winners selected weekly -- free uk delivery</p>
-        </div>
+        <Banner />
         <div className="checkout__header">
           <h1>checkout</h1>
           <p>{basket?.length} ticket(s)</p>
@@ -155,6 +165,8 @@ const Checkout = () => {
         <div ref={container} className="checkout__stripe">
           <form id="payment-form" onSubmit={handleSubmit}>
             <input
+              required
+              name="email"
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -174,9 +186,7 @@ const Checkout = () => {
             {/* Show a success message upon completion */}
           </form>
         </div>
-        <div className="checkout__footer">
-          <p>2020 The Big Raffle All Rights Reserved </p>
-        </div>
+        <Footer />
       </div>
     </>
   );

@@ -3,6 +3,8 @@ import React, { useEffect, useState, useRef } from "react";
 // components
 import "./Main.css";
 import Product from "./Product";
+import Banner from "./Banner";
+import Footer from "./Footer";
 
 // other
 import { ToastContainer, toast } from "react-toastify";
@@ -20,9 +22,9 @@ const Main = () => {
   // fetch product data from db
   useEffect(() => {
     async function fetchData() {
-      const req = await axios.get("/products");
+      const res = await axios.get("/products");
 
-      setProducts(req.data);
+      setProducts(res.data);
     }
 
     fetchData();
@@ -39,9 +41,7 @@ const Main = () => {
 
   return (
     <div className="main">
-      <div className="main__banner">
-        <p>winners selected weekly -- free uk delivery</p>
-      </div>
+      <Banner />
       <div className="main__header">
         <div className="main__p">
           <p>Win luxury items & cash prizes</p>
@@ -76,9 +76,7 @@ const Main = () => {
           pauseOnHover
         />
       </div>
-      <div className="main__footer">
-        <p>2020 The Big Raffle All Rights Reserved </p>
-      </div>
+      <Footer />
     </div>
   );
 };

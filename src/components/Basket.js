@@ -5,6 +5,8 @@ import "./Basket.css";
 import Sidebar from "./Sidebar";
 import BasketProduct from "./BasketProduct";
 import Subtotal from "./Subtotal";
+import Banner from "./Banner";
+import Footer from "./Footer";
 
 // other
 import { Button } from "@material-ui/core";
@@ -33,9 +35,7 @@ const Basket = () => {
     <>
       <Sidebar />
       <div className="basket">
-        <div className="basket__banner">
-          <p>winners selected weekly -- free uk delivery</p>
-        </div>
+        <Banner />
         {basket?.length ? (
           <>
             <div className="basket__header">
@@ -66,10 +66,7 @@ const Basket = () => {
             </Link>
           </div>
         )}
-
-        <div className="basket__footer">
-          <p>2020 The Big Raffle All Rights Reserved </p>
-        </div>
+        <Footer />
       </div>
     </>
   );

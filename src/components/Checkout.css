@@ -14,19 +14,6 @@
   background-color: rgb(109, 106, 106);
 }
 
-.checkout__banner {
-  width: 95%;
-
-  flex: 0.02;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-
-  color: teal;
-  background-color: black;
-}
-
 .checkout__header {
   width: 95%;
 
@@ -90,14 +77,4 @@
   align-self: center;
 
   font-family: poppins, sans-serif;
-}
-
-.checkout__footer {
-  width: 95%;
-  flex: 0.02;
-
-  text-align: center;
-
-  background-color: black;
-  color: teal;
 }
