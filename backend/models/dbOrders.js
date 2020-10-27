@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 // structure
 const orderSchema = mongoose.Schema({
   id: String,
-  basket: Array,
+  order: Array,
   email: String,
 });
 

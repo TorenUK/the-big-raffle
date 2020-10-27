@@ -6,7 +6,8 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 // schema
 const Products = require("./models/dbProducts");
-const Order = require("./models/dbOrders");
+const Orders = require("./models/dbOrders");
+const { AllOutOutlined } = require("@material-ui/icons");
 
 const mongoAdminPassword = process.env.MONGO_ADMIN_PASSWORD;
 const hostname = process.env.HOST;
@@ -50,13 +51,9 @@ app.get("/products", (req, res) => {
 
 // get individual order to display on order.js page
 
-app.get("/order", (req, res) => {
-  Order.find((err, data) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.status(200).send(data);
-    }
+app.get("/order/:id", (req, res) => {
+  Orders.findById(req.params.id).then((order) => {
+    res.status(200).send(order);
   });
 });
 
@@ -69,21 +66,23 @@ app.post("/update/:id", (req, res) => {
 
       product
         .save()
-        .then(() => res.send("product updated!"))
+        .then(() => res.send("product stock updated!"))
         .catch((err) => res.status(400).send("err -> ", err));
     })
     .catch((err) => res.status(400).send("error ->", err));
 });
 
 app.post("/orders", (req, res) => {
-  const newOrder = new Order({
-    basket: req.body.basket,
+  const newOrder = new Orders({
+    order: req.body.basket,
     email: req.body.email,
   });
 
+  // created new order object
+
   newOrder
     .save()
-    .then(() => res.send("order added"))
+    .then(() => res.send(newOrder)) // send new order object back to front end
     .catch((err) => res.status(400).send("error", err));
 });
 

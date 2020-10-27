@@ -6,6 +6,7 @@ import Sidebar from "./Sidebar";
 import BasketProduct from "./BasketProduct";
 import Banner from "./Banner";
 import Footer from "./Footer";
+import Subtotal from "./Subtotal";
 
 // other
 import axios from "./axios";
@@ -104,7 +105,6 @@ const Checkout = () => {
       setError(null);
       setProcessing(false);
       setSucceeded(true);
-      history.push("/order");
 
       // get the number of tickets ordered per product & store in new object
       let obj = {};
@@ -126,19 +126,35 @@ const Checkout = () => {
         reqId = id;
         tickets = obj[id];
 
-        axios.post(`/update/${reqId}`, {
-          tickets: tickets,
-        });
+        axios
+          .post(`/update/${reqId}`, {
+            tickets: tickets,
+          })
+          .then((res) => {
+            console.log(res.data);
+          })
+          .catch((err) => {
+            console.log("err -->", err);
+          });
       }
 
       // add new order to db
-      axios.post("/orders", {
-        basket: basket,
-        email: email,
-      });
+      axios
+        .post("/orders", {
+          basket: basket,
+          email: email,
+        })
 
-      dispatch(addCustomer(email));
-      dispatch(emptyBasket());
+        // destructure and assign the newOrder id from db -- add it to data layer.
+        .then((res) => {
+          const { _id } = res.data;
+          dispatch(addCustomer(_id));
+          dispatch(emptyBasket());
+          history.push("/order");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 
@@ -150,6 +166,7 @@ const Checkout = () => {
         <div className="checkout__header">
           <h1>checkout</h1>
           <p>{basket?.length} ticket(s)</p>
+          <Subtotal showButton={false} />
         </div>
         <div className="checkout__container">
           {basket?.map((product) => (
@@ -186,6 +203,7 @@ const Checkout = () => {
             {/* Show a success message upon completion */}
           </form>
         </div>
+
         <Footer />
       </div>
     </>

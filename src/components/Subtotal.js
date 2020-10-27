@@ -12,7 +12,7 @@ import { Button } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import { selectBasket } from "../features/basketSlice";
 
-const Subtotal = () => {
+const Subtotal = ({ showButton }) => {
   const basket = useSelector(selectBasket);
 
   // calculate basket total
@@ -37,11 +37,13 @@ const Subtotal = () => {
           prefix={"£"}
         />
       </div>
-      <div className="subtotal__links">
-        <Link to="/checkout">
-          <Button variant="outlined">proceed to checkout</Button>
-        </Link>
-      </div>
+      {showButton != false ? (
+        <div className="subtotal__links">
+          <Link to="/checkout">
+            <Button variant="outlined">proceed to checkout</Button>
+          </Link>
+        </div>
+      ) : null}
     </div>
   );
 };

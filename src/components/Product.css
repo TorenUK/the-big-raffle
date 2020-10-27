@@ -1,4 +1,6 @@
 .product {
+  position: relative;
+
   width: 500px;
   height: 650px;
   margin: 50px;
@@ -11,7 +13,6 @@
   background-color: white;
   box-shadow: 1px 1px 15px 1px black;
   border-radius: 5px;
-  overflow: hidden;
 }
 
 .product__image {
@@ -47,6 +48,11 @@
   margin: 10px;
 }
 
+.product__info > p > span {
+  color: red;
+  font-weight: bold;
+}
+
 .product__info > :nth-child(3) {
   padding: 0 10px;
 
@@ -60,4 +66,24 @@
 
   font-family: poppins, sans-serif;
   background-color: orange;
+}
+
+.product__low {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: -15px -25px 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 120px;
+  height: 70px;
+
+  background-color: teal;
+  color: white;
+  box-shadow: 1px 1px 10px 1px black;
+  border-radius: 5px;
+  z-index: 100;
 }

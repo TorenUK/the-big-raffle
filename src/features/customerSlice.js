@@ -4,13 +4,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const customerSlice = createSlice({
   name: "customer",
-  initialState: {
-    customer: null,
-  },
+  initialState: null,
 
   reducers: {
     addCustomer: (state, action) => {
-      state.customer = action.payload;
+      return (state = action.payload);
     },
   },
 });
@@ -19,6 +17,6 @@ export const customerSlice = createSlice({
 export const { addCustomer } = customerSlice.actions;
 
 // selector
-export const selectCustomer = (state) => state.customer.customer;
+export const selectCustomer = (state) => state.customer;
 
 export default customerSlice.reducer;

@@ -16,12 +16,21 @@ const Product = ({ name, image, price, tickets, notify, dbId }) => {
 
   return (
     <div className="product">
+      {tickets < 10 ? (
+        <div className="product__low">
+          <p>low in stock!</p>
+        </div>
+      ) : null}
+
       <div className="product__image">
         <img alt="product" src={image} />
       </div>
       <div className="product__info">
         <h2>{name}</h2>
-        <p>{tickets} tickets available</p>
+        <p>
+          {" "}
+          <span>{tickets}</span> tickets available
+        </p>
         <h2>£{price}</h2>
         <Button
           onClick={() => {

@@ -30,7 +30,7 @@
   position: relative;
   width: 95%;
 
-  flex: 0.75;
+  flex: 0.55;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -39,4 +39,10 @@
 
   border-radius: 5px;
   background-color: white;
+}
+
+.order__spacer {
+  width: 95%;
+
+  flex: 0.2;
 }
