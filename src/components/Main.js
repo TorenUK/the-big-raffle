@@ -5,6 +5,7 @@ import "./Main.css";
 import Product from "./Product";
 import Banner from "./Banner";
 import Footer from "./Footer";
+import Logo from "./Logo";
 
 // other
 import { ToastContainer, toast } from "react-toastify";
@@ -42,6 +43,7 @@ const Main = () => {
   return (
     <div className="main">
       <Banner />
+      <Logo />
       <div className="main__header">
         <div className="main__p">
           <p>Win luxury items & cash prizes</p>

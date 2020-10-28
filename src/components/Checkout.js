@@ -7,6 +7,7 @@ import BasketProduct from "./BasketProduct";
 import Banner from "./Banner";
 import Footer from "./Footer";
 import Subtotal from "./Subtotal";
+import Logo from "./Logo";
 
 // other
 import axios from "./axios";
@@ -163,6 +164,7 @@ const Checkout = () => {
       <Sidebar />
       <div className="checkout">
         <Banner />
+        <Logo />
         <div className="checkout__header">
           <h1>checkout</h1>
           <p>{basket?.length} ticket(s)</p>

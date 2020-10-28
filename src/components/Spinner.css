@@ -1,0 +1,8 @@
+.spinner {
+  opacity: 1;
+  z-index: 200;
+}
+
+.spinner > img {
+  width: 120px;
+}

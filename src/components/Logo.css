@@ -1,0 +1,15 @@
+.logo {
+  width: 95%;
+
+  flex: 0.1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  font-size: 30px;
+}
+
+.logo > h1 {
+  font-weight: 400;
+}

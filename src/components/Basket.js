@@ -7,6 +7,7 @@ import BasketProduct from "./BasketProduct";
 import Subtotal from "./Subtotal";
 import Banner from "./Banner";
 import Footer from "./Footer";
+import Logo from "./Logo";
 
 // other
 import { Button } from "@material-ui/core";
@@ -36,6 +37,7 @@ const Basket = () => {
       <Sidebar />
       <div className="basket">
         <Banner />
+        <Logo />
         {basket?.length ? (
           <>
             <div className="basket__header">

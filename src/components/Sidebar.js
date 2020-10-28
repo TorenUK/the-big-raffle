@@ -2,9 +2,9 @@ import React, { useEffect, useRef } from "react";
 
 // components
 import "./Sidebar.css";
+import Spinner from "./Spinner";
 
 // other
-import gsap from "gsap";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 import EmailOutlinedIcon from "@material-ui/icons/EmailOutlined";
@@ -18,28 +18,12 @@ import { useSelector } from "react-redux";
 import { selectBasket } from "../features/basketSlice";
 
 const Sidebar = () => {
-  const spinner = useRef(null);
-
   const basket = useSelector(selectBasket);
-
-  //animation
-  useEffect(() => {
-    gsap.to(spinner.current, {
-      rotate: 360 * 6,
-      opacity: 1,
-      duration: 4,
-      delay: 0.2,
-      ease: "ease-in",
-    });
-  });
 
   return (
     <div className="sidebar">
       <div className="sidebar__header">
-        {/* <h1>The Big Raffle</h1>
-        <div className="spinner">
-          <img alt="spinner" ref={spinner} src="./spin-wheel.png" />
-        </div> */}
+        <Spinner />
       </div>
       <div className="sidebar__nav">
         <Link to="/" className="sidebar__link">

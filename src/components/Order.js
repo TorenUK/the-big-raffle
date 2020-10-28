@@ -6,6 +6,7 @@ import Sidebar from "./Sidebar";
 import Banner from "./Banner";
 import Footer from "./Footer";
 import BasketProduct from "./BasketProduct";
+import Logo from "./Logo";
 
 // other
 import axios from "./axios";
@@ -37,6 +38,7 @@ const Order = () => {
       <Sidebar />
       <div className="order">
         <Banner />
+        <Logo />
         <div className="order__header">
           <h1>thanks for your order!</h1>
           <p>{email}</p>
