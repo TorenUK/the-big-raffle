@@ -37,7 +37,7 @@
 .main__container {
   position: relative;
   width: 95%;
-  height: 70%;
+  height: 65%;
 
   flex: 0.75;
   display: flex;
@@ -47,4 +47,8 @@
   overflow-y: scroll;
 
   opacity: 0;
+}
+
+.main__spacer {
+  flex: 0.1;
 }

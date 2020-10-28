@@ -78,6 +78,7 @@ const Main = () => {
           pauseOnHover
         />
       </div>
+      <div className="main__spacer"></div>
       <Footer />
     </div>
   );
