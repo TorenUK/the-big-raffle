@@ -37,7 +37,7 @@ const Subtotal = ({ showButton }) => {
           prefix={"£"}
         />
       </div>
-      {showButton != false ? (
+      {showButton !== false ? (
         <div className="subtotal__links">
           <Link to="/checkout">
             <Button variant="outlined">proceed to checkout</Button>
